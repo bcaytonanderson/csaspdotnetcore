@@ -14,3 +14,5 @@ This lesson will create a .NET MVC Application which manages a pen-and-paper sty
 			-uppercase @Model access the model data.
 
 	-Set up controller to send data to the view.
+		-The index method (public IActionResult Index() ) returns an IActionResult.
+			-Methods which return this are called "action methods". Action methods PROVIDE RESPONSES USABLE BY BROWSERS.
