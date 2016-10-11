@@ -6,5 +6,11 @@ This lesson will create a .NET MVC Application which manages a pen-and-paper sty
 	-Will allow users to add new characters
 	-Will show all characters.
 
+	-Setting up the index view:
+		-Create the index view as a .cshtml file which allows us to write our HTML views and add in C# code. This uses a built-in engine called Razor.
 
+		-To populate the list of characters dynamically, we start out by using the Razor keyword @model with a datatype String. 
+			-lowercase @model defines the data coming into the view
+			-uppercase @Model access the model data.
 
+	-Set up controller to send data to the view.
