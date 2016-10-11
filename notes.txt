@@ -16,3 +16,6 @@ This lesson will create a .NET MVC Application which manages a pen-and-paper sty
 	-Set up controller to send data to the view.
 		-The index method (public IActionResult Index() ) returns an IActionResult.
 			-Methods which return this are called "action methods". Action methods PROVIDE RESPONSES USABLE BY BROWSERS.
+
+	ROUTES
+		-What happens if we omit the route in our URL? It will default a controller and action- normally it will default to www.url.com/Home/Index

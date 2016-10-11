@@ -9,6 +9,9 @@ namespace CharacterSheetApp.Controllers
 	{
 		// method
 		// this method returns an IActionResult, making it an Action Method.
+
+		// the method "Index" tells the controller to search for a view called "index.cshtml"
+		
 		public IActionResult Index()
 		{
 			var name = "Hux";
