@@ -1,0 +1,10 @@
+ASP.NET Core
+
+Unit 1:
+-------
+This lesson will create a .NET MVC Application which manages a pen-and-paper style tabletop game.
+	-Will allow users to add new characters
+	-Will show all characters.
+
+
+
