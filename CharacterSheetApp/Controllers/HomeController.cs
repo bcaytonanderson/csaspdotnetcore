@@ -21,8 +21,11 @@ namespace CharacterSheetApp.Controllers
 		// once we have some functionality in the Model, we will set the model to a Character object.
 
 		// since the Character model lives outside of the controller, we need to enter the full namespace and class to access it.
-		var model = new CharacterSheetApp.Models.Character();
-		model.Name = "Hux";
-		return View(model);
+		public IActionResult Index()
+		{
+			var model = new CharacterSheetApp.Models.Character();
+			model.Name = "Hux";
+			return View(model);
+		}
 	}
 }
