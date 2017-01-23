@@ -7,16 +7,16 @@ namespace CharacterSheetApp.Controllers
 	{
 		public IActionResult Index()
 		{
-			return View();
+			return View(Models.Character.GetAll();
 		}
 
 		public IActionResult Create(string characterName)
 		{
 
-			var model = new CharacterSheetApp.Models.Character();
-			model.Name = CharacterName;
+			Models.Character.Create(characterName);
 
-			return View("Index",model);
+			// instead of returning a view, this RedirectToAction will take us to the Index action in the Home controller. This will prevent the user from accidentally saving the same character twice by refreshing, avoids duplicate code.
+			return RedirectToAction("Index");
 		}
 	}
 }

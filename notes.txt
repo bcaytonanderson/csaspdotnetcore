@@ -51,3 +51,53 @@ UNIT 2: GETTING USER INPUT
 
 	-We can use tag helpers in <form> to specify which action the form is to take when submitted (asp-action), and, if needed, which controller to use (asp-controller).
 		-In this case, our view and controller are automatcially mapped, so we don't need it.
+
+UNIT 3: RETAINING USER DATA
+---------------------------
+-As the code stands now, every time we try to submit a new character name, it will wipe out the previous information. We will keep the data persistent by using a List.
+	-We could use an array, but resizing an array is a lot of code:
+		Array.Resize(ref characters, characters.Length + 1)
+		characters[characters.Length - 1] = new Character();
+
+	-Adding a new object to a list is just a single line of code:
+		characters.Add(new Character());
+
+	-In C#, arrays are better for groups of a fixed size. Lists are better for groups of variable size.
+
+-We will change the View's model to a List:
+	@model CharacterSheetApp.Models.Character => 
+		@model List<CharacterSheetApp.Models.Character>
+
+	-We can iterate through the List using a foreach loop:
+		@foreach (var item in Model) {}
+
+	-Razor will automatically know what parts of your view are HTML and which are C# so long as you format things correctly.
+
+-We will also need a place to store our information. This course will not talk about hooking up a database; instead we will set up a global variable.
+	-USE GLOBAL VARIABLES SPARINGLY AS THEY CAN CREATE A NUMBER OF PROBLEMS AND CONCERNS WHEN MISUED.
+
+	-Within our GlobalVariables.cs file, we create a new class called GlobalVariables, and define a variable that holds a list of characters.
+
+	-We will make sure we only have one list of characters- not a different list for each  user. To accomplish this, we set our Characters variable STATIC.
+		-Static makes sure there can only ever be one instance of the variable. Each time you use it, it will be the same exact data.
+
+-Instead of writing out the entire namespace for our lists each time, we can use "Using Directives":
+	using Systems.Collections.Generic;
+
+	-This is a way for us to access classes from another namespace in our current namespace.
+
+-Writing methods to set and retrieve character information in our global variables:
+
+	-Need to make sure that our Character list is not null- trying to add info to a null variable will return an error.
+
+		if (GlobalVariables.Characters == null) 
+			GlobalVariables.Characters = new List<Character>();
+
+	-We will make these methods static: this allows us to access the method without having to instantiate the class it lives in.
+
+	-We can call our create method like so:
+		Models.Characters.Create("Hux")
+
+-Instead of manually handling our null list situation, we can set our Characters list from a variable to a property.
+	-We can add a get setter to the List in GlobalVariables.cs
+		public static List<Character> Characters { get; set; };
