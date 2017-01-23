@@ -1,103 +1,166 @@
 ASP.NET Core
 
-Unit 1:
--------
-This lesson will create a .NET MVC Application which manages a pen-and-paper style tabletop game.
-	-Will allow users to add new characters
-	-Will show all characters.
+Try ASP.NET Core
+	Unit 1:
+	-------
+	This lesson will create a .NET MVC Application which manages a pen-and-paper style tabletop game.
+		-Will allow users to add new characters
+		-Will show all characters.
 
-	-Setting up the index view:
-		-Create the index view as a .cshtml file which allows us to write our HTML views and add in C# code. This uses a built-in engine called Razor.
+		-Setting up the index view:
+			-Create the index view as a .cshtml file which allows us to write our HTML views and add in C# code. This uses a built-in engine called Razor.
 
-		-To populate the list of characters dynamically, we start out by using the Razor keyword @model with a datatype String. 
-			-lowercase @model defines the data coming into the view
-			-uppercase @Model access the model data.
+			-To populate the list of characters dynamically, we start out by using the Razor keyword @model with a datatype String. 
+				-lowercase @model defines the data coming into the view
+				-uppercase @Model access the model data.
 
-	-Set up controller to send data to the view.
-		-The index method (public IActionResult Index() ) returns an IActionResult.
-			-Methods which return this are called "action methods". Action methods PROVIDE RESPONSES USABLE BY BROWSERS.
+		-Set up controller to send data to the view.
+			-The index method (public IActionResult Index() ) returns an IActionResult.
+				-Methods which return this are called "action methods". Action methods PROVIDE RESPONSES USABLE BY BROWSERS.
 
-	ROUTES
-		-What happens if we omit the route in our URL? It will default a controller and action- normally it will default to www.url.com/Home/Index.
+		ROUTES
+			-What happens if we omit the route in our URL? It will default a controller and action- normally it will default to www.url.com/Home/Index.
 
-	MODELS
-		-Since our app will do more than just list characters names, we need to build out the Character class in the Models folder.
+		MODELS
+			-Since our app will do more than just list characters names, we need to build out the Character class in the Models folder.
 
-		-within the Character class, we define
-			public string Name;
+			-within the Character class, we define
+				public string Name;
 
-			-whenever there is a public field, variable, or property we use Pascal Case: every word in the name will be capitalized.
+				-whenever there is a public field, variable, or property we use Pascal Case: every word in the name will be capitalized.
 
-		-.NET uses a number of namespaces to help with the division of concerns. Currently, the Models, Views, and Controllers directories are within their own namespaces.
+			-.NET uses a number of namespaces to help with the division of concerns. Currently, the Models, Views, and Controllers directories are within their own namespaces.
 
-		-Within the view, we need to explicitly state the namespace of our Model
-			@model String => @model CharacterSheetApp.Models.Character
+			-Within the view, we need to explicitly state the namespace of our Model
+				@model String => @model CharacterSheetApp.Models.Character
 
-			-We also need to edit our <li> to access the name field from our character object:
-			@Model => @Model.name
+				-We also need to edit our <li> to access the name field from our character object:
+				@Model => @Model.name
 
 
-UNIT 2: GETTING USER INPUT
---------------------------
--In the last lesson, we set up the views to show data dynamically, but were still hard-coding the information into the controller. Instead, we will be using user input.
-	-Create a form in view
+	UNIT 2: GETTING USER INPUT
+	--------------------------
+	-In the last lesson, we set up the views to show data dynamically, but were still hard-coding the information into the controller. Instead, we will be using user input.
+		-Create a form in view
 
-	-Add a Create() method to controller
+		-Add a Create() method to controller
 
-	-Move existing logic out of Index() into Create()
+		-Move existing logic out of Index() into Create()
 
--Adding a basic form to the view.
-	-The name of the input field for our CharacterName is shared with the String parameter passed to the Create method in our controller. Because they are named the same, they will automatically map together.
+	-Adding a basic form to the view.
+		-The name of the input field for our CharacterName is shared with the String parameter passed to the Create method in our controller. Because they are named the same, they will automatically map together.
 
-	-We can use tag helpers in <form> to specify which action the form is to take when submitted (asp-action), and, if needed, which controller to use (asp-controller).
-		-In this case, our view and controller are automatcially mapped, so we don't need it.
+		-We can use tag helpers in <form> to specify which action the form is to take when submitted (asp-action), and, if needed, which controller to use (asp-controller).
+			-In this case, our view and controller are automatcially mapped, so we don't need it.
 
-UNIT 3: RETAINING USER DATA
----------------------------
--As the code stands now, every time we try to submit a new character name, it will wipe out the previous information. We will keep the data persistent by using a List.
-	-We could use an array, but resizing an array is a lot of code:
-		Array.Resize(ref characters, characters.Length + 1)
-		characters[characters.Length - 1] = new Character();
+	UNIT 3: RETAINING USER DATA
+	---------------------------
+	-As the code stands now, every time we try to submit a new character name, it will wipe out the previous information. We will keep the data persistent by using a List.
+		-We could use an array, but resizing an array is a lot of code:
+			Array.Resize(ref characters, characters.Length + 1)
+			characters[characters.Length - 1] = new Character();
 
-	-Adding a new object to a list is just a single line of code:
-		characters.Add(new Character());
+		-Adding a new object to a list is just a single line of code:
+			characters.Add(new Character());
 
-	-In C#, arrays are better for groups of a fixed size. Lists are better for groups of variable size.
+		-In C#, arrays are better for groups of a fixed size. Lists are better for groups of variable size.
 
--We will change the View's model to a List:
-	@model CharacterSheetApp.Models.Character => 
-		@model List<CharacterSheetApp.Models.Character>
+	-We will change the View's model to a List:
+		@model CharacterSheetApp.Models.Character => 
+			@model List<CharacterSheetApp.Models.Character>
 
-	-We can iterate through the List using a foreach loop:
-		@foreach (var item in Model) {}
+		-We can iterate through the List using a foreach loop:
+			@foreach (var item in Model) {}
 
-	-Razor will automatically know what parts of your view are HTML and which are C# so long as you format things correctly.
+		-Razor will automatically know what parts of your view are HTML and which are C# so long as you format things correctly.
 
--We will also need a place to store our information. This course will not talk about hooking up a database; instead we will set up a global variable.
-	-USE GLOBAL VARIABLES SPARINGLY AS THEY CAN CREATE A NUMBER OF PROBLEMS AND CONCERNS WHEN MISUED.
+	-We will also need a place to store our information. This course will not talk about hooking up a database; instead we will set up a global variable.
+		-USE GLOBAL VARIABLES SPARINGLY AS THEY CAN CREATE A NUMBER OF PROBLEMS AND CONCERNS WHEN MISUED.
 
-	-Within our GlobalVariables.cs file, we create a new class called GlobalVariables, and define a variable that holds a list of characters.
+		-Within our GlobalVariables.cs file, we create a new class called GlobalVariables, and define a variable that holds a list of characters.
 
-	-We will make sure we only have one list of characters- not a different list for each  user. To accomplish this, we set our Characters variable STATIC.
-		-Static makes sure there can only ever be one instance of the variable. Each time you use it, it will be the same exact data.
+		-We will make sure we only have one list of characters- not a different list for each  user. To accomplish this, we set our Characters variable STATIC.
+			-Static makes sure there can only ever be one instance of the variable. Each time you use it, it will be the same exact data.
 
--Instead of writing out the entire namespace for our lists each time, we can use "Using Directives":
-	using Systems.Collections.Generic;
+	-Instead of writing out the entire namespace for our lists each time, we can use "Using Directives":
+		using Systems.Collections.Generic;
 
-	-This is a way for us to access classes from another namespace in our current namespace.
+		-This is a way for us to access classes from another namespace in our current namespace.
 
--Writing methods to set and retrieve character information in our global variables:
+	-Writing methods to set and retrieve character information in our global variables:
 
-	-Need to make sure that our Character list is not null- trying to add info to a null variable will return an error.
+		-Need to make sure that our Character list is not null- trying to add info to a null variable will return an error.
 
-		if (GlobalVariables.Characters == null) 
-			GlobalVariables.Characters = new List<Character>();
+			if (GlobalVariables.Characters == null) 
+				GlobalVariables.Characters = new List<Character>();
 
-	-We will make these methods static: this allows us to access the method without having to instantiate the class it lives in.
+		-We will make these methods static: this allows us to access the method without having to instantiate the class it lives in.
 
-	-We can call our create method like so:
-		Models.Characters.Create("Hux")
+		-We can call our create method like so:
+			Models.Characters.Create("Hux")
 
--Instead of manually handling our null list situation, we can set our Characters list from a variable to a property.
-	-We can add a get setter to the List in GlobalVariables.cs
-		public static List<Character> Characters { get; set; };
+	-Instead of manually handling our null list situation, we can set our Characters list from a variable to a property.
+		-We can add a get setter to the List in GlobalVariables.cs
+			public static List<Character> Characters { get; set; };
+
+Forging Ahead with ASP.NET Core
+
+	-Unit 1: ENGAGING DATA
+	----------------------
+		-Building on app created in Try ASP.NET Core
+		
+		-Adding a database
+
+		-There are two different versions of ASP.NET to be aware of: ASP.NET Core, and ASP.NET Framework
+			-Most material will work between the two
+				-Any using directives or references with "core" in their name
+				-Startup.cs file
+
+		DATA ANNOTATIONS
+			-Options for storing data long term:
+				-File System
+					-less system overhead for smaller datasets
+
+					-less configuration/setup overhead
+
+				-Databases
+					-optimized for relational data
+
+					-fewer issues with multiple active users
+
+					-"bad data" is easier to mitigate.
+
+			-Data and business logic will be handled in the model.
+
+			-To read and write from the DB, we will use a DBContext. And we will need to:
+				-Reference EntityFramework'
+
+				-Add a property for our characters
+
+				-Create a CharacterController that loads the ApplicationDbContext
+
+				-Create a character through the context in the controller
+
+				-Save new character in db
+
+			-Set up a using statement for EntityFramework which allows us to inherit the DbContext class. This lets us teach the EntityFramework how the db works.
+
+			-Adding DbSet to define our tables.
+
+			-Keywords:
+				-private: makes a variable private, so we can only access it within the controller.
+
+				-the naming convention for readonly variables is an underscore followed by a lowercase name.
+					e.g., _context
+
+			-Dependency injection is built into ASP.NET
+				-establishes Inversion of Control. This way, we don't have to instantiate a class any time we want to use that class.
+
+				-With Inversion of Control we can loosen the coupling of dependencies.
+
+			-Calling the Create method will do more than just create the character:
+				-If the DB doesn't exist yet, it will be created.
+
+				-If the Characters table doesn't exist yet, it will be created.
+
+				-A Character record will be created in the Characters table.
