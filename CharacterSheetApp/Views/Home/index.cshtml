@@ -12,6 +12,19 @@
 		@model CharacterSheetApp.Models.Character
 		<h2>Characters</h2>
 
+		<!-- using a tag helper "asp-action" we can specify what action we want our form to take -->
+		<form asp-action="Create">
+
+		<!-- because our model, view, and controller are automatically mapped, we don't need to specify the name of the controller in the view. However, if this were not the case we could use 'asp-controller="Home"' to explicitly specify the controller.-->
+
+
+			<div>
+				<!-- the input field name is the same as the name of the string parameter passed into the Create method. -->
+				<input name="CharacterName" />
+				<input type="submit" value="Add Character" />
+			</div>
+		</form>
+
 		<div>
 			<ul>
 				<li>@Model.Name</li>

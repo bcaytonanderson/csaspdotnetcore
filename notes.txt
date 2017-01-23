@@ -36,4 +36,18 @@ This lesson will create a .NET MVC Application which manages a pen-and-paper sty
 			-We also need to edit our <li> to access the name field from our character object:
 			@Model => @Model.name
 
-		
+
+UNIT 2: GETTING USER INPUT
+--------------------------
+-In the last lesson, we set up the views to show data dynamically, but were still hard-coding the information into the controller. Instead, we will be using user input.
+	-Create a form in view
+
+	-Add a Create() method to controller
+
+	-Move existing logic out of Index() into Create()
+
+-Adding a basic form to the view.
+	-The name of the input field for our CharacterName is shared with the String parameter passed to the Create method in our controller. Because they are named the same, they will automatically map together.
+
+	-We can use tag helpers in <form> to specify which action the form is to take when submitted (asp-action), and, if needed, which controller to use (asp-controller).
+		-In this case, our view and controller are automatcially mapped, so we don't need it.
