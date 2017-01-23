@@ -10,13 +10,17 @@
 	<body>
 
 		<!-- this tells our view to expect a single string of data. -->
-		@model String
+		<!-- @model String -->
+
+		<!-- now that we are using the Character model instead of the string: -->
+		@model CharacterSheetApp.Models.Character
 		<h2>Characters</h2>
 
 		<div>
 			<ul>
 				<!-- to access the data from @model, we use @Model in the <li> -->
-				<li>@Model</li>
+				<!-- now that we are accessing the Character object instead of a string, we need to access the name field as such: -->
+				<li>@Model.name</li>
 			</ul>
 		</div>
 

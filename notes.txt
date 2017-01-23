@@ -18,4 +18,22 @@ This lesson will create a .NET MVC Application which manages a pen-and-paper sty
 			-Methods which return this are called "action methods". Action methods PROVIDE RESPONSES USABLE BY BROWSERS.
 
 	ROUTES
-		-What happens if we omit the route in our URL? It will default a controller and action- normally it will default to www.url.com/Home/Index
+		-What happens if we omit the route in our URL? It will default a controller and action- normally it will default to www.url.com/Home/Index.
+
+	MODELS
+		-Since our app will do more than just list characters names, we need to build out the Character class in the Models folder.
+
+		-within the Character class, we define
+			public string Name;
+
+			-whenever there is a public field, variable, or property we use Pascal Case: every word in the name will be capitalized.
+
+		-.NET uses a number of namespaces to help with the division of concerns. Currently, the Models, Views, and Controllers directories are within their own namespaces.
+
+		-Within the view, we need to explicitly state the namespace of our Model
+			@model String => @model CharacterSheetApp.Models.Character
+
+			-We also need to edit our <li> to access the name field from our character object:
+			@Model => @Model.name
+
+		
