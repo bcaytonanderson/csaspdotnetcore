@@ -116,7 +116,7 @@ Forging Ahead with ASP.NET Core
 				-Any using directives or references with "core" in their name
 				-Startup.cs file
 
-		DATA ANNOTATIONS
+		-DATA ANNOTATIONS
 			-Options for storing data long term:
 				-File System
 					-less system overhead for smaller datasets
@@ -164,3 +164,24 @@ Forging Ahead with ASP.NET Core
 				-If the Characters table doesn't exist yet, it will be created.
 
 				-A Character record will be created in the Characters table.
+
+		-Working with CRUD
+			-ApplicationDbContext is injected using ServicesCollection, but WE STILL NEED TO ADD ApplicationDbContext TO the ServicesCollection.
+				-This is done in the Startup.cs file.
+
+				-Startup.cs is where we configure what our application will use, including MVC, EntityFramework, dependency injection, etc.
+
+			-The methods we are going to include:
+				-Create a character
+
+				-Read all characters
+
+				-Read a specific character's details
+
+				-Read all "active" characters
+
+				-Update a character
+
+				-Delete a character
+
+			-Lambda expressions allow us to essentially do a foreach loop without having to write it all out every time.
