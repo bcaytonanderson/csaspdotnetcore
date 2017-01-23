@@ -36,4 +36,3 @@ This lesson will create a .NET MVC Application which manages a pen-and-paper sty
 			-We also need to edit our <li> to access the name field from our character object:
 			@Model => @Model.name
 
-		
