@@ -8,7 +8,7 @@
 			Characters
 		</h1>
 
-		<p>
+		<!-- <p>
 			<a asp-action="Create" asp-controller="Home">Create new character</a>
 		</p>
 
@@ -21,4 +21,11 @@
 					</a>
 				</li>
 			}
-		</ul>
+		</ul> -->
+
+		<div class="row">
+			@foreach(var item in Model)
+			{
+				@Html.Partial("_CharacterSheet",item)
+			}
+		</div>

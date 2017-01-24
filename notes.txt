@@ -214,4 +214,9 @@ Forging Ahead with ASP.NET Core
 
 			-Layouts go in the Shared folder.
 
-			
+		-PARTIALS
+			-Allows us to break the views up into different parts.
+
+			-Naming convention is the same for Layout: _PascalCase
+
+			-All partials can be placed in the Shared folder, OR in folders based on what model they use.
