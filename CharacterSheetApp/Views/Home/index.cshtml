@@ -10,26 +10,27 @@
 	<body>
 
 		@model List<CharacterSheetApp.Models.Character>
-		<h2>Characters</h2>
 
-		<form asp-action="Create">
-			<div>
-				<input name="CharacterName" />
-				<input type="submit" value="Add Character" />
-			</div>
-		</form>
+		<h1>
+			Characters
+		</h1>
 
-		<div>
-			<ul>
+		<p>
+			<!-- linking to the Create method -->
+			<a asp-action="Create" asp-controller="Home">Create new character</a>
+		</p>
 
-				@foreach (var item in Model)
-				{
-					<li>
-						<label>@item.Name</label>
-					</li>
-				}
-				
-			</ul>
+		<ul>
+			@foreach(var item in Model)
+			{
+				<li>
+					<!-- linking to the Details method; since the method is expecting an input parameter we can pass that information along using the asp-route-name tag helper -->
+					<a asp-action="Details" asp-controller="Home" asp-route-name="@item.Name">
+						@item.Name
+					</a>
+				</li>
+			}
+		</ul>
 		</div>
 
 	</body>
