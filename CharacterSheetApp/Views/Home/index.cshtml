@@ -1,15 +1,8 @@
-<!DOCTYPE html>
-<html>
+	@model List<CharacterSheetApp.Models.Character>
 
-	<head>
-	<meta charset="utf-8">
-
-	</head>
-
-
-	<body>
-
-		@model List<CharacterSheetApp.Models.Character>
+	@section header{
+		<meta name="description" content="Lists all characters in App">
+	}
 
 		<h1>
 			Characters
@@ -29,8 +22,3 @@
 				</li>
 			}
 		</ul>
-		</div>
-
-	</body>
-
-</html>

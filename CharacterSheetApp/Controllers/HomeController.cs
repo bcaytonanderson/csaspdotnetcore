@@ -28,6 +28,9 @@ namespace CharacterSheetApp.Controllers
 
 		public IActionResult Index()
 		{
+			// ViewData will pass the title we define here to the title section in the layout.
+			ViewData["Title"] = "Characters";
+			
 			var model = _context.Characters.ToList();
 
 			return View(model);
@@ -43,7 +46,7 @@ namespace CharacterSheetApp.Controllers
 		public IActionResult Details(string name)
 		{
 			var model = _context.Characters.FirstOrDefault(e => e.Name == name);
-			
+
 			return View(model);
 		}
 

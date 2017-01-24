@@ -201,3 +201,17 @@ Forging Ahead with ASP.NET Core
 
 		-asp-for tag helper
 
+	-Unit 3: MAKING OUR PRESENTATION SMARTER
+	----------------------------------------
+		-Going to use layouts to make our display more consistent.
+
+		-Want to be able to set the title on the individual pages and search results, and speficy our description data for search results.
+
+		-Much like with rails, the _Layout is all of the HTML surrounding the information we want to display, and the line @RenderBody() is where the view will be displayed.
+			-Layout is a keyword in Razor that sets what layout the current view will use.
+
+			-Naming convention for Layout is _PascalCase
+
+			-Layouts go in the Shared folder.
+
+			
