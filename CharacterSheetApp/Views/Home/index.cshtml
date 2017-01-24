@@ -16,7 +16,6 @@
 		</h1>
 
 		<p>
-			<!-- linking to the Create method -->
 			<a asp-action="Create" asp-controller="Home">Create new character</a>
 		</p>
 
@@ -24,7 +23,6 @@
 			@foreach(var item in Model)
 			{
 				<li>
-					<!-- linking to the Details method; since the method is expecting an input parameter we can pass that information along using the asp-route-name tag helper -->
 					<a asp-action="Details" asp-controller="Home" asp-route-name="@item.Name">
 						@item.Name
 					</a>
